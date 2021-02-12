@@ -341,7 +341,7 @@ for (res in resolutionString){
 	d = dist(coord,method="euclidean")
 	sil=silhouette(as.numeric(as.character(clusters)),dist=d)
 	palette=alpha(colour=hue_pal()(length(unique(Idents(so_noDoublet)))),alpha=0.7)
-	print(plot(sil, col=palette[as.factor(clusters[order(clusters,decreasing=F)])],
+	print(plot(sil, col=palette[as.factor(clusters[order(as.numeric(as.character(clusters)),decreasing=F)])],
 	main=paste0("Silhouette plot of clustering resolution ", res), lty=2,
 	sub=paste("Average silhouette width:",format(round(mean(sil[,3]), 4), nsmall = 4))))
   

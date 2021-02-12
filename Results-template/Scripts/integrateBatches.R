@@ -272,18 +272,18 @@ for (res in resolutionString){
 #Primary cell type annotation
 pdf(paste0(outImageDir,"/primaryAnnotation_integrated.pdf"))
 singleRPlot=DimPlot(combinedObj.integrated,group.by="annot",label=T,repel=T)
-print(singleRPlot + labs(title = paste0(sample," annotations by ",annotDB)))
+print(singleRPlot + labs(title = paste0("Integrated annotations by ",annotDB)))
 dev.off()
 
 pdf(paste0(outImageDir,"/primaryAnnotation_merged.pdf"))
 singleRPlot=DimPlot(combinedObj.integratedRNA,group.by="annot",label=T,repel=T)
-print(singleRPlot + labs(title = paste0(sample," annotations by ",annotDB)))
+print(singleRPlot + labs(title = paste0("Merged annotations by ",annotDB)))
 
 library(grid)
 library(gridExtra)
 mytheme = gridExtra::ttheme_default(core = list(fg_params=list(cex=0.6)),colhead = list(fg_params=list(cex=0.6)),rowhead = list(fg_params=list(cex=0.8)))
 tableWidth = length(unique(combinedObj.integrated$Sample))*1.3
-g = gridExtra::tableGrob(table(so$immgen_main, so$Sample),theme=mytheme)
+g = gridExtra::tableGrob(table(combinedObj.integratedRNA$annot, combinedObj.integrated$Sample),theme=mytheme)
 pdf(paste0 (outImageDir,"/sampleCellTypeCounts.pdf"),width = tableWidth);grid.draw(g);dev.off()
 
 #CITESeq Ridge plots, if applicable
